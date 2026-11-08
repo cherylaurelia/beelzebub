@@ -88,7 +88,7 @@ func TestRedisService_RealClientRequests(t *testing.T) {
 		{"resp lowercase ping", respRequest("ping"), "+PONG"},
 		{"inline ping", "PING\r\n", "+PONG"},
 		{"resp hello 3", respRequest("HELLO", "3"), "%7"},
-		{"resp auth", respRequest("AUTH", "secret"), "-ERR Client sent AUTH, but no password is set"},
+		{"resp auth", respRequest("AUTH", "secret"), "-ERR AUTH <password> called without any password configured for the default user. Are you sure your configuration is correct?"},
 		{"resp info", respRequest("INFO", "server"), infoReply},
 		{"resp unknown", respRequest("MODULE", "LIST"), "-ERR unknown command"},
 		{"longer command name is unknown", respRequest("PINGPONG"), "-ERR unknown command"},
